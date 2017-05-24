@@ -39,4 +39,20 @@ return [
         ],
     ],
 
+
+    // id, password, remember_token, created_at, updated_at are defaults fields
+    'table'     => [
+        [
+            'type'   => 'string',
+            'name'   => 'name',
+            'unique' => false,
+            'index'  => false,
+        ],
+        [
+            'type'   => 'string',
+            'name'   => 'email',
+            'unique' => true,
+        ]
+    ]
+
 ];

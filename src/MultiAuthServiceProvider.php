@@ -28,6 +28,8 @@ class MultiAuthServiceProvider extends ServiceProvider
         ], "multiAuth");
 
         $this->addAdminConfigToAuth();
+
+        $this->loadMigrationsFrom(__DIR__.'/migrations');
     }
 
     public function register() {
