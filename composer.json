@@ -1,14 +1,25 @@
 {
-    "name": "adrianexavier/multi-auth",
-    "description": "2 Auth Guard",
-    "type": "library",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Xavier Au",
-            "email": "xavier.au@anacreation.com"
-        }
-    ],
-    "minimum-stability": "dev",
-    "require": {}
+  "name": "xavierau/multi-auth",
+  "description": "The additional admin Auth Guard",
+  "type": "library",
+  "license": "MIT",
+  "keywords": [
+	"auth",
+	"laravel"
+  ],
+  "authors": [
+	{
+	  "name": "Xavier Au",
+	  "email": "xavier.au@anacreation.com"
+	}
+  ],
+  "autoload": {
+	"psr-4": {
+	  "Anacreation\\MultiAuth\\": "src/"
+	}
+  },
+  "minimum-stability": "dev",
+  "require": {
+	"laravel/framework": "5.4.*"
+  }
 }
