@@ -1,0 +1,14 @@
+{
+    "name": "adrianexavier/multi-auth",
+    "description": "2 Auth Guard",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Xavier Au",
+            "email": "xavier.au@anacreation.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
