@@ -18,8 +18,18 @@
 	  "Anacreation\\MultiAuth\\": "src/"
 	}
   },
+  "autoload-dev": {
+	"psr-4": {
+	  "Anacreation\\MultiAuth\\Tests\\": "tests/"
+	}
+  },
   "minimum-stability": "dev",
   "require": {
 	"laravel/framework": "5.4.*"
+  },
+  "require-dev": {
+	"fzaninotto/faker": "~1.4",
+	"mockery/mockery": "0.9.*",
+	"phpunit/phpunit": "~5.7"
   }
 }
