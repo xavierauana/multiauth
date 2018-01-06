@@ -9,6 +9,7 @@ namespace Anacreation\MultiAuth\Services;
 
 
 use Anacreation\MultiAuth\Model\Admin;
+use Anacreation\MultiAuth\Model\AdminRole;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 
@@ -19,15 +20,20 @@ class CacheManagementService
         $this->forgetAdminPermissions($allAdmin);
     }
 
-    public function forgetAdminPermissions($admins) {
-        if ($admins instanceof Collection) {
-            $admins->each(function ($admin) {
-                $this->forgetAdminPermissions($admin);
+    public function forgetAdminPermissions($data) {
+        if ($data instanceof Collection) {
+            $data->each(function ($item) {
+                $this->forgetAdminPermissions($item);
             });
-        } elseif ($admins instanceof Admin) {
-            $admin = $admins;
+        } elseif ($data instanceof Admin) {
+            $admin = $data;
             $key = $this->getAdminPermissionKey($admin);
             Cache::forget($key);
+        } elseif ($data instanceof AdminRole) {
+            $role = $data;
+            $role->users->each(function (Admin $admin) {
+                $this->forgetAdminPermissions($admin);
+            });
         }
     }
 
