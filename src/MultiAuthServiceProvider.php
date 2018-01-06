@@ -35,7 +35,6 @@ class MultiAuthServiceProvider extends ServiceProvider
 
         $this->loadMigrationsFrom(__DIR__ . '/migrations');
 
-        $this->registerModelEvents();
     }
 
     public function register() {
@@ -57,8 +56,4 @@ class MultiAuthServiceProvider extends ServiceProvider
         }
     }
 
-    private function registerModelEvents() {
-        AdminRole::observe(AdminRoleObserver::class);
-        AdminPermission::observe(AdminPermissionObserver::class);
-    }
 }
