@@ -8,6 +8,10 @@
 namespace Anacreation\MultiAuth;
 
 
+use Anacreation\MultiAuth\Model\AdminPermission;
+use Anacreation\MultiAuth\Model\AdminRole;
+use Anacreation\MultiAuth\Observers\AdminPermissionObserver;
+use Anacreation\MultiAuth\Observers\AdminRoleObserver;
 use Illuminate\Support\ServiceProvider;
 
 class MultiAuthServiceProvider extends ServiceProvider
@@ -29,7 +33,9 @@ class MultiAuthServiceProvider extends ServiceProvider
 
         $this->addAdminConfigToAuth();
 
-        $this->loadMigrationsFrom(__DIR__.'/migrations');
+        $this->loadMigrationsFrom(__DIR__ . '/migrations');
+
+        $this->registerModelEvents();
     }
 
     public function register() {
@@ -41,10 +47,18 @@ class MultiAuthServiceProvider extends ServiceProvider
 
         if ($auth_config) {
             config([
-                "auth.guards"    => array_merge($auth_config['guards'], config('auth.guards')),
-                "auth.providers" => array_merge($auth_config['providers'], config('auth.providers')),
-                "auth.passwords" => array_merge($auth_config['passwords'], config('auth.passwords')),
+                "auth.guards"    => array_merge($auth_config['guards'],
+                    config('auth.guards')),
+                "auth.providers" => array_merge($auth_config['providers'],
+                    config('auth.providers')),
+                "auth.passwords" => array_merge($auth_config['passwords'],
+                    config('auth.passwords')),
             ]);
         }
+    }
+
+    private function registerModelEvents() {
+        AdminRole::observe(AdminRoleObserver::class);
+        AdminPermission::observe(AdminPermissionObserver::class);
     }
 }

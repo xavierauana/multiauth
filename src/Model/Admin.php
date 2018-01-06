@@ -7,10 +7,12 @@
 
 namespace Anacreation\MultiAuth\Model;
 
+use Anacreation\MultiAuth\Services\CacheManagementService;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 
 class Admin extends Authenticatable
 {
@@ -35,11 +37,18 @@ class Admin extends Authenticatable
     }
 
     public function getPermissionsAttribute(): Collection {
-        return $this->roles()->with("Permissions")->get()->map(function ($role) {
-            return $role->permissions;
-        })->flatten()->unique(function ($permission) {
-            return $permission->id;
-        })->values();
+        $cacheService = new CacheManagementService();
+        $key = $cacheService->getAdminPermissionKey($this);
+        return Cache::rememberForever($key,
+            function () {
+                return $this->roles()->with("permissions")->get()
+                            ->map(function ($role
+                            ) {
+                                return $role->permissions;
+                            })->flatten()->unique(function ($permission) {
+                    return $permission->id;
+                })->values();
+            });
     }
 
     public function hasRole($roleCode): bool {
@@ -53,12 +62,14 @@ class Admin extends Authenticatable
 
     public function hasPermission($permissionCode): bool {
         $permissionCode = is_array($permissionCode) ? $permissionCode : [$permissionCode];
-        $thePermission = $this->roles()->with('permissions')->get()->map(function ($role) {
-            return $role->permissions;
-        })->flatten()->first(function ($permission) use ($permissionCode) {
+        $thePermission = $this->permissions->first(function ($permission) use (
+            $permissionCode
+        ) {
             return in_array($permission->code, $permissionCode);
         });
 
         return !!$thePermission;
     }
+
+
 }
