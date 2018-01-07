@@ -26,7 +26,7 @@
   "minimum-stability": "dev",
   "require": {
 	"laravel/framework": "5.5.*",
-	"fico7489/laravel-pivot": "2.0.*"
+	"fico7489/laravel-pivot": "2.1.*"
   },
   "require-dev": {
 	"fzaninotto/faker": "~1.4",
