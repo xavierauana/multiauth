@@ -25,12 +25,19 @@
   },
   "minimum-stability": "dev",
   "require": {
-	"laravel/framework": "5.4.*",
-    "fico7489/laravel-pivot": "2.0.*"
+	"laravel/framework": "5.5.*",
+	"fico7489/laravel-pivot": "2.0.*"
   },
   "require-dev": {
 	"fzaninotto/faker": "~1.4",
 	"mockery/mockery": "0.9.*",
 	"phpunit/phpunit": "~5.7"
+  },
+  "extra": {
+	"laravel": {
+	  "providers": [
+		"Anacreation\\MultiAuth\\MultiAuthServiceProvider"
+	  ]
+	}
   }
 }
