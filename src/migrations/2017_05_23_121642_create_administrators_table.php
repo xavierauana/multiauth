@@ -20,7 +20,11 @@ class CreateAdministratorsTable extends Migration
                 $query = $table->$method($item['name']);
 
                 if (isset($item['unique']) and $item['unique']) {
-                    $query = $query->unique();
+                    if (isset($item['unique_key']) and $key = $item['unique_key']) {
+                        $query = $query->unique($key);
+                    } else {
+                        $query = $query->unique();
+                    }
                 }
                 if (isset($item['index']) and $item['index']) {
                     $query = $query->index();
