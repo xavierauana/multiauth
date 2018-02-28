@@ -17,7 +17,7 @@ class AdminLoginController extends Controller
     }
 
     public function getLogin() {
-        return view('MultiAuth::auth.admin-login');
+        return view( 'MultiAuth::auth.admin-login');
     }
 
     public function postLogin(Request $request) {
