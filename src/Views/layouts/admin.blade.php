@@ -55,7 +55,7 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="/clients">Clients</a>
+                                        <a href="{{route('admin.clients')}}">Clients</a>
                                     </li>
                                     <li>
                                         <a href="{{ route('admin.profile') }}">Profile</a>
