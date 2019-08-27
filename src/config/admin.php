@@ -20,7 +20,7 @@ return [
         ],
 
         'admin-api' => [
-            'driver'   => 'token',
+            'driver'   => 'passport',
             'provider' => 'admins',
         ],
     ],

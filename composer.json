@@ -26,7 +26,10 @@
   "minimum-stability": "dev",
   "require": {
 	"laravel/framework": "5.5.*",
-	"fico7489/laravel-pivot": "2.1.*"
+	"fico7489/laravel-pivot": "2.1.*",
+	"laravel/passport": "~4.0",
+	"paragonie/random_compat": "2.*",
+	"laravelcollective/html": "5.5.*"
   },
   "require-dev": {
 	"fzaninotto/faker": "~1.4",
