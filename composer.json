@@ -30,7 +30,6 @@
 	"laravel/ui": "^1.0",
 	"fico7489/laravel-pivot": "^3.0",
 	"laravel/passport": "^7.4",
-	"paragonie/random_compat": "2.*",
 	"laravelcollective/html": "^6.0"
   },
   "require-dev": {
