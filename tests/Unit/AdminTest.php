@@ -25,7 +25,7 @@ class AdminTest extends TestCase
     private $roles;
     private $somePermissions;
 
-    protected function setUp() {
+    protected function setUp(): void {
         parent::setUp();
 
         // create admin user
@@ -47,7 +47,8 @@ class AdminTest extends TestCase
 
         // second roles has some the permissions
         $this->somePermissions = $this->permissions->random(3);
-        $this->roles[1]->permissions()->sync($this->somePermissions->pluck('id')->toArray());
+        $this->roles[1]->permissions()->sync($this->somePermissions->pluck('id')
+                                                                   ->toArray());
 
         // second roles has none the permissions
 
@@ -75,7 +76,9 @@ class AdminTest extends TestCase
         });
 
         $this->permissions->filter(function ($permission) {
-            return !$this->somePermissions->contains(function ($sp) use ($permission) {
+            return !$this->somePermissions->contains(function ($sp) use (
+                $permission
+            ) {
                 return $sp->id === $permission->id;
             });
         })->each(function ($permission) {
@@ -108,6 +111,6 @@ class AdminTest extends TestCase
             }
         }
     }
-    
+
 }
 

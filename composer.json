@@ -25,8 +25,13 @@
   },
   "minimum-stability": "dev",
   "require": {
-	"laravel/framework": "5.5.*",
-	"fico7489/laravel-pivot": "2.1.*"
+	"php": "^7.2",
+	"laravel/framework": "^6.0",
+	"laravel/ui": "^1.0",
+	"fico7489/laravel-pivot": "^3.0",
+	"laravel/passport": "^7.4",
+	"paragonie/random_compat": "2.*",
+	"laravelcollective/html": "^6.0"
   },
   "require-dev": {
 	"fzaninotto/faker": "~1.4",

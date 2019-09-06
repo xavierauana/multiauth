@@ -8,15 +8,15 @@
 namespace Anacreation\MultiAuth;
 
 
-use Anacreation\MultiAuth\Model\AdminPermission;
-use Anacreation\MultiAuth\Model\AdminRole;
-use Anacreation\MultiAuth\Observers\AdminPermissionObserver;
-use Anacreation\MultiAuth\Observers\AdminRoleObserver;
+use Anacreation\MultiAuth\Passport\PassportRouteRegister;
+use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 class MultiAuthServiceProvider extends ServiceProvider
 {
     public function boot() {
+
 
         $this->loadRoutesFrom(__DIR__ . '/Routes/routes.php');
 
@@ -35,10 +35,18 @@ class MultiAuthServiceProvider extends ServiceProvider
 
         $this->loadMigrationsFrom(__DIR__ . '/migrations');
 
+        $this->registerPassportRoutes();
+
+        $this->loadFactoriesWhenTesting();
+
     }
 
     public function register() {
+        $this->mergeConfigFrom(
+            __DIR__ . '/config/admin.php', 'admin'
+        );
     }
+
 
     private function addAdminConfigToAuth() {
 
@@ -56,4 +64,22 @@ class MultiAuthServiceProvider extends ServiceProvider
         }
     }
 
+    private function registerPassportRoutes(): void {
+        $options = [
+            'prefix'    => 'oauth',
+            'namespace' => '\Laravel\Passport\Http\Controllers',
+
+        ];
+
+        Route::group($options, function ($router) {
+            (new PassportRouteRegister($router))->all();
+        });
+    }
+
+    private function loadFactoriesWhenTesting(): void {
+        if (app()->env === 'testing') {
+            $path = __DIR__ . '/factories';
+            $this->app->make(Factory::class)->load($path);
+        }
+    }
 }
