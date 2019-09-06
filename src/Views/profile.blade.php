@@ -2,8 +2,7 @@
 
 @section("content")
 	<div class="container">
-		{{Form::model($admin, ['url'=>route('admin.profile'), 'method'=>'PUT'])}}
-		
+		{!! Form::model($admin,['url'=>route('admin.profile'), 'method'=>'PUT'])!!}
 		<div class="form-group">
 			{{Form::label('name','Name',['class'=>'form-label'])}}
 			{{Form::text('name',null,['class'=>$errors->has('name')?"form-control is-invalid":"form-control","required"])}}
@@ -46,7 +45,7 @@
 			<a class="btn btn-info" href="{{'/admin'}}">Back</a>
 		</div>
 		
-		{{Form::close()}}
+		{!! Form::close() !!}
 	</div>
 
 @endsection

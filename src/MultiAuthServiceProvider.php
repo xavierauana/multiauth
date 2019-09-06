@@ -18,7 +18,6 @@ class MultiAuthServiceProvider extends ServiceProvider
     public function boot() {
 
 
-
         $this->loadRoutesFrom(__DIR__ . '/Routes/routes.php');
 
         $this->loadViewsFrom(__DIR__ . '/Views', 'MultiAuth');
@@ -83,5 +82,4 @@ class MultiAuthServiceProvider extends ServiceProvider
             $this->app->make(Factory::class)->load($path);
         }
     }
-
 }

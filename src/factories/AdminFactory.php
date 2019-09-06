@@ -1,5 +1,8 @@
 <?php
 
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+
+use Anacreation\MultiAuth\Model\Admin;
 use Faker\Generator as Faker;
 
 /*
@@ -13,7 +16,7 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(\Anacreation\MultiAuth\Model\Admin::class,
+$factory->define(Admin::class,
     function (Faker $faker) {
         return [
             'name'     => $faker->name,

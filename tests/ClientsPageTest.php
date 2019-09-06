@@ -21,6 +21,7 @@ class ClientsPageTest extends TestCase
      */
     public function get_clients_page() {
 
+        $this->withoutExceptionHandling();
         $admin = factory(Admin::class)->create();
 
         $this->actingAs($admin, 'admin');
@@ -29,8 +30,7 @@ class ClientsPageTest extends TestCase
 
         $response = $this->get($uri);
 
-        $response->assertSuccessful()
-                 ->assertSee('passport-personal-access-tokens');
+        $response->assertViewIs('MultiAuth::clients');
 
     }
 
