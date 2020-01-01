@@ -1,43 +1,43 @@
 {
-  "name": "xavierau/multi-auth",
-  "description": "The additional admin Auth Guard",
-  "type": "library",
-  "license": "MIT",
-  "keywords": [
-	"auth",
-	"laravel"
-  ],
-  "authors": [
-	{
-	  "name": "Xavier Au",
-	  "email": "xavier.au@anacreation.com"
-	}
-  ],
-  "autoload": {
-	"psr-4": {
-	  "Anacreation\\MultiAuth\\": "src/"
-	}
-  },
-  "autoload-dev": {
-	"psr-4": {
-	  "Anacreation\\MultiAuth\\Tests\\": "tests/"
-	}
-  },
-  "minimum-stability": "dev",
-  "require": {
-	"laravel/framework": "5.5.*",
-	"fico7489/laravel-pivot": "2.1.*"
-  },
-  "require-dev": {
-	"fzaninotto/faker": "~1.4",
-	"mockery/mockery": "0.9.*",
-	"phpunit/phpunit": "~5.7"
-  },
-  "extra": {
-	"laravel": {
-	  "providers": [
-		"Anacreation\\MultiAuth\\MultiAuthServiceProvider"
-	  ]
-	}
-  }
+    "name": "xavierau/multi-auth",
+    "description": "The additional admin Auth Guard",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "auth",
+        "laravel"
+    ],
+    "authors": [
+        {
+            "name": "Xavier Au",
+            "email": "xavier.au@anacreation.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Anacreation\\MultiAuth\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Anacreation\\MultiAuth\\Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "laravel/framework": "6.*",
+        "fico7489/laravel-pivot": "*"
+    },
+    "require-dev": {
+        "fzaninotto/faker": "~1.4",
+        "mockery/mockery": "0.9.*",
+        "phpunit/phpunit": "~5.7"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Anacreation\\MultiAuth\\MultiAuthServiceProvider"
+            ]
+        }
+    }
 }
