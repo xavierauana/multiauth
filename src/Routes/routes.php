@@ -8,14 +8,25 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::prefix(config('admin.route_prefix'))->middleware('web')->group(function (
-) {
-    Route::get('/login',
-        "Anacreation\MultiAuth\Controllers\Auth\AdminLoginController@getLogin")
-         ->name('admin.login');
-    Route::post('/login',
-        "Anacreation\MultiAuth\Controllers\Auth\AdminLoginController@postLogin")
-         ->name('admin.login.submit');
-    Route::get('/', "Anacreation\MultiAuth\Controllers\AdminsController@index")
-         ->name('admin.home');
-});
+Route::prefix(config('admin.route_prefix'))
+     ->middleware('web')
+     ->group(function () {
+         Route::get('/login',
+             "Anacreation\MultiAuth\Controllers\Auth\AdminLoginController@getLogin")
+              ->name('admin.login');
+         Route::post('/login',
+             "Anacreation\MultiAuth\Controllers\Auth\AdminLoginController@postLogin")
+              ->name('admin.login.submit');
+         Route::get('/',
+             "Anacreation\MultiAuth\Controllers\AdminsController@index")
+              ->name('admin.home');
+         Route::view('/clients', 'MultiAuth::clients')
+              ->name('admin.clients')
+              ->middleware('auth:admin');
+         Route::get('/profile',
+             "Anacreation\MultiAuth\Controllers\AdminsController@getProfile")
+              ->name('admin.profile')->middleware('auth:admin');
+         Route::put('/profile',
+             "Anacreation\MultiAuth\Controllers\AdminsController@putProfile")
+              ->middleware('auth:admin');
+     });

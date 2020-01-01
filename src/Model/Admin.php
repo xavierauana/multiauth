@@ -13,10 +13,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
+use Laravel\Passport\HasApiTokens;
 
 class Admin extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, HasApiTokens;
 
     protected $guarded = ['id', 'created_at', 'updated_at', 'remember_token'];
 
@@ -39,6 +40,7 @@ class Admin extends Authenticatable
     public function getPermissionsAttribute(): Collection {
         $cacheService = new CacheManagementService();
         $key = $cacheService->getAdminPermissionKey($this);
+
         return Cache::rememberForever($key,
             function () {
                 return $this->roles()->with("permissions")->get()
@@ -46,8 +48,8 @@ class Admin extends Authenticatable
                             ) {
                                 return $role->permissions;
                             })->flatten()->unique(function ($permission) {
-                    return $permission->id;
-                })->values();
+                        return $permission->id;
+                    })->values();
             });
     }
 
